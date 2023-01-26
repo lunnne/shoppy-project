@@ -10,6 +10,7 @@ import ProductDetail from './pages/ProductDetail';
 import Cart from './pages/Cart';
 import ErrorPage from './pages/ErrorPage';
 import AddProduct from './pages/AddProduct';
+import Home from './pages/Home';
 
 const router = createBrowserRouter([
   {
@@ -17,7 +18,7 @@ const router = createBrowserRouter([
     element: <App />,
     errorElement: <ErrorPage />,
     children: [
-      { index: true, element: <Products /> },
+      { index: true, element: <Home /> },
       { path: 'products', element: <Products /> },
       { path: 'products/:productId', element: <ProductDetail /> },
       { path: 'cart', element: <Cart /> },
