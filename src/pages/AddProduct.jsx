@@ -1,18 +1,57 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 
 export default function AddProduct() {
+  const [image, setImage] = useState('');
+  const [url, setUrl] = useState('');
+  const [product, setProduct] = useState({
+    name: '',
+    price: 0,
+    category: '',
+    description: '',
+    options: '',
+    url: ''
+  });
+
+  const uploadImage = () => {
+    const data = new FormData();
+    data.append('file', image);
+    data.append('upload_preset', 'zegih5rl');
+    data.append('cloud_name', 'drhck7yy');
+    axios
+      .post('https://api.cloudinary.com/v1_1/drhck7nyy/image/upload', data, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      })
+      .then((res) => res.data)
+      .then((data) => {
+        setUrl(data.url);
+        setProduct({...product, url: data.url})
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(product);
+  };
+
   return (
-    <div className='flex flex-col space-y-2'>
-      <div>chooseFile</div>
-      <label htmlFor="name"></label> <input type="text" id="name" placeholder="제품명" />
-      <label htmlFor="price"></label>
-      <input type="text" id="price" placeholder="가격" />
-      <label htmlFor="category"></label>
-      <input type="text" id="category" placeholder="카테고리" />
-      <label htmlFor="description"></label>
-      <input type="text" id="description" placeholder="제품설명" />
-      <label htmlFor="options"></label>
-      <input type="text" id="options" placeholder="options.." />
-    </div>
+    <form onSubmit={handleSubmit} className="flex flex-col items-center [&>input]:w-full [&>input]:h-12 [&>select]:h-12 space-y-2">
+      <div>
+        <img className="w-72" src={url} />
+      </div>
+      <div className="w-full h-12 flex items-center">
+        <input type="file" onChange={(e) => setImage(e.target.files[0])}></input>
+        <button className="p-2 bg-moon-gray rounded-md" onClick={uploadImage}>
+          Upload
+        </button>
+      </div>
+      <input type="text" id="name" placeholder="제품명" onChange={(e) => setProduct({ ...product, name: e.target.value })} />
+      <input type="text" id="price" placeholder="가격" onChange={(e) => setProduct({ ...product, price: e.target.value })} />
+      <input type="text" id="category" placeholder="카테고리" onChange={(e) => setProduct({ ...product, category: e.target.value })} />
+      <input type="text" id="description" placeholder="제품설명" onChange={(e) => setProduct({ ...product, description: e.target.value })} />
+      <input type="text" id="options" placeholder="Options.." onChange={(e) => setProduct({ ...product, options: e.target.value })} />
+      <button type="submit">Upload a item</button>
+    </form>
   );
 }
