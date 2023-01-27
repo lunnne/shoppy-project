@@ -6,10 +6,12 @@ module.exports = {
       'moon-pink': '#e8b1e1',
       'moon-gray': '#eee9ed',
       'moon-yellow': '#f2e88e',
-      'moon-navy': '#454777',
+      'moon-navy': '#5158ff',
       'moon-light-pink': '#f2cdec'
     },
-    extend: {},
+    fontFamily : {
+      'heading' : ['Sonsie One',]
+    },
   },
   plugins: [],
 };
