@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
+import { ref, set } from 'firebase/database';
 import axios from 'axios';
+import { db } from '../utils/firebase';
+import { v4 as uuidv4 } from 'uuid';
 
 export default function AddProduct() {
   const [image, setImage] = useState('');
@@ -10,7 +13,7 @@ export default function AddProduct() {
     category: '',
     description: '',
     options: '',
-    url: ''
+    url: '',
   });
 
   const uploadImage = () => {
@@ -24,21 +27,29 @@ export default function AddProduct() {
       })
       .then((res) => res.data)
       .then((data) => {
-        setUrl(data.url);
-        setProduct({...product, url: data.url})
+        console.log(data.url);
+        setProduct({ ...product, url: data.url });
       })
       .catch((err) => console.log(err));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const uuid = uuidv4();
     console.log(product);
+    set(ref(db, `/${uuid}`), {
+      name : product.name,
+      category : product.category,
+      description : product.description,
+      options : product.options,
+      url : product.url
+    });
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col items-center [&>input]:w-full [&>input]:h-12 [&>select]:h-12 space-y-2">
+    <>
       <div>
-        <img className="w-72" src={url} />
+        <img className="w-72" src={product.url} alt='image'/>
       </div>
       <div className="w-full h-12 flex items-center">
         <input type="file" onChange={(e) => setImage(e.target.files[0])}></input>
@@ -46,12 +57,14 @@ export default function AddProduct() {
           Upload
         </button>
       </div>
-      <input type="text" id="name" placeholder="제품명" onChange={(e) => setProduct({ ...product, name: e.target.value })} />
-      <input type="text" id="price" placeholder="가격" onChange={(e) => setProduct({ ...product, price: e.target.value })} />
-      <input type="text" id="category" placeholder="카테고리" onChange={(e) => setProduct({ ...product, category: e.target.value })} />
-      <input type="text" id="description" placeholder="제품설명" onChange={(e) => setProduct({ ...product, description: e.target.value })} />
-      <input type="text" id="options" placeholder="Options.." onChange={(e) => setProduct({ ...product, options: e.target.value })} />
-      <button type="submit">Upload a item</button>
-    </form>
+      <form onSubmit={handleSubmit} className="flex flex-col items-center [&>input]:w-full [&>input]:h-12 [&>select]:h-12 space-y-2">
+        <input type="text" id="name" placeholder="제품명" onChange={(e) => setProduct({ ...product, name: e.target.value })} />
+        <input type="text" id="price" placeholder="가격" onChange={(e) => setProduct({ ...product, price: e.target.value })} />
+        <input type="text" id="category" placeholder="카테고리" onChange={(e) => setProduct({ ...product, category: e.target.value })} />
+        <input type="text" id="description" placeholder="제품설명" onChange={(e) => setProduct({ ...product, description: e.target.value })} />
+        <input type="text" id="options" placeholder="Options.." onChange={(e) => setProduct({ ...product, options: e.target.value })} />
+        <button type="submit">Upload a item</button>
+      </form>
+    </>
   );
 }
