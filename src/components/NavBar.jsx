@@ -13,15 +13,15 @@ export default function NavBar() {
           <img className="w-40" src="/logo.png" alt="" />
         </Link>
       </header>
-      <nav className=" flex items-center text-2xl justify-evenly border-x-4 border-b-4 border-moon-navy">
-        <button>Items</button>
-        <button>
-          <BsFillCartFill />
+      <nav className="flex items-center text-lg border-x-4 border-b-4 [&>*]:p-3 [&>*]:flex-1 [&>*]: text-center [&>*]:text-moon-navy border-moon-navy">
+        <Link to="/">Items</Link>
+        <button className="flex justify-center items-center">
+          Cart <BsFillCartFill className="mx-2" />
         </button>
-        <Link to="/upload">
-          <FaEdit />
+        <Link to="/upload" className="flex justify-center items-center">
+          <FaEdit className="mx-2" />
         </Link>
-        <button className="bg-moon-yellow px-3 py-1 rounded">LogIn</button>
+        <button className="bg-moon-navy"><span className='text-moon-gray'>LogIn</span></button>
       </nav>
     </>
   );

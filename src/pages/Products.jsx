@@ -21,12 +21,13 @@ export default function Products() {
 
   console.log(items);
   return (
-    <div className="border-2 border-moon-navy text-moon-navy">
-      <div className="text-2xl text-center py-3">Products</div>
-      <ul className="grid grid-cols-3">
-        {' '}
+    <div className="border-4 border-moon-navy text-moon-navy">
+      <div id="item-banner" className="text-2xl font-bold italic text-moon-navy text-center py-3 border-b-4">
+        Items
+      </div>
+      <ul className="grid grid-cols-4 gap-y-10 my-10 justify-center items-center">
         {items.map((item) => (
-          <li key={uuidv4()}>
+          <li className="flex flex-col items-center" key={uuidv4()}>
             <ProductCard item={item} />
           </li>
         ))}
