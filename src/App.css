@@ -36,3 +36,16 @@
     transform: rotate(360deg);
   }
 }
+
+#item-banner {
+  background-color: #f2e88e;
+  /* opacity: 0.6; */
+  background-image: linear-gradient(#5158ff 0.7000000000000001px, transparent 0.7000000000000001px), linear-gradient(to right, #5158ff 0.7000000000000001px, #f2e88e 0.7000000000000001px);
+  background-size: 14px 14px;
+}
+
+/* #card {
+  -webkit-box-shadow: 10px 10px 24px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 10px 24px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 10px 10px 24px 0px rgba(0, 0, 0, 0.75);
+} */

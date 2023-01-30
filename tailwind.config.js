@@ -7,7 +7,9 @@ module.exports = {
       'moon-gray': '#eee9ed',
       'moon-yellow': '#f2e88e',
       'moon-navy': '#5158ff',
-      'moon-light-pink': '#f2cdec'
+      'moon-light-pink': '#f2cdec',
+      'moon-warm-pink' : '#ff80a0',
+      'moon-warm-yellow' : '#f4c651'
     },
     fontFamily : {
       'heading' : ['Sonsie One',]
