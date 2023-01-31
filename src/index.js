@@ -3,14 +3,14 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { createRoot } from 'react-dom/client';
-import { createBrowserRouter, RouterProvider, Route, Link } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Products from './pages/Products';
 import ProductDetail from './pages/ProductDetail';
 import Cart from './pages/Cart';
 import ErrorPage from './pages/ErrorPage';
 import AddProduct from './pages/AddProduct';
 import Home from './pages/Home';
+import Protected from './components/Protected';
 
 const router = createBrowserRouter([
   {
@@ -21,7 +21,7 @@ const router = createBrowserRouter([
       { index: true, element: <Home /> },
       { path: 'products', element: <Products /> },
       { path: 'products/:productId', element: <ProductDetail /> },
-      { path: 'cart', element: <Cart /> },
+      { path: 'cart', element: <Protected><Cart/></Protected> },
       { path: 'upload', element: <AddProduct /> },
     ],
   },

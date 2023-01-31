@@ -1,9 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BsFillCartFill } from 'react-icons/bs';
 import { FaEdit } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { UserAuth } from '../context/AuthContext';
 
 export default function NavBar() {
+  const { user, logOut } = UserAuth();
+  const { googleSignIn } = UserAuth();
+
+  const handleSignIn = async () => {
+    try {
+      await googleSignIn();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const handleSignOut = async () => {
+    try {
+      await logOut();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
       <header className="p-5 border-4 text-xl border-moon-navy text-moon-navy h-1/7">
@@ -18,10 +37,18 @@ export default function NavBar() {
         <button className="flex justify-center items-center">
           Cart <BsFillCartFill className="mx-2" />
         </button>
-        <Link to="/upload" className="flex justify-center items-center">
+        {user? `Hi,${user.displayName}`: <Link to="/upload" className="flex justify-center items-center">
           <FaEdit className="mx-2" />
-        </Link>
-        <button className="bg-moon-navy"><span className='text-moon-gray'>LogIn</span></button>
+        </Link>  }
+        {user ? (
+          <button onClick={handleSignOut} className="bg-moon-navy">
+            <span className="text-moon-gray">LogOut</span>
+          </button>
+        ) : (
+          <button onClick={handleSignIn} className="bg-moon-navy">
+            <span className="text-moon-gray">LogIn</span>
+          </button>
+        )}
       </nav>
     </>
   );
