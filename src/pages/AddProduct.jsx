@@ -3,10 +3,11 @@ import { ref, set } from 'firebase/database';
 import axios from 'axios';
 import { db } from '../utils/firebase';
 import { v4 as uuidv4 } from 'uuid';
+import { useNavigate } from 'react-router-dom';
 
 export default function AddProduct() {
+  const navigate = useNavigate();
   const [image, setImage] = useState('');
-  const [url, setUrl] = useState('');
   const [product, setProduct] = useState({
     name: '',
     price: 0,
@@ -14,6 +15,7 @@ export default function AddProduct() {
     description: '',
     options: '',
     url: '',
+    id: '',
   });
 
   const uploadImage = () => {
@@ -38,18 +40,22 @@ export default function AddProduct() {
     const uuid = uuidv4();
     console.log(product);
     set(ref(db, `/${uuid}`), {
-      name : product.name,
-      category : product.category,
-      description : product.description,
-      options : product.options,
-      url : product.url
+      name: product.name,
+      category: product.category,
+      price : product.price,
+      description: product.description,
+      options: product.options,
+      url: product.url,
+      id: uuid,
     });
+    setProduct({});
+    navigate('/');
   };
 
   return (
     <>
       <div>
-        <img className="w-72" src={product.url} alt='image'/>
+      {product.url && <img className="w-72" src={product.url} alt="image" />}
       </div>
       <div className="w-full h-12 flex items-center">
         <input type="file" onChange={(e) => setImage(e.target.files[0])}></input>
