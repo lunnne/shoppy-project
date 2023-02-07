@@ -30,7 +30,7 @@ export default function ProductDetail() {
               ))}
             </select>
           </div>
-          <button className="border-2 border-moon-navy w-3/4 py-2 text-xl">Add to Cart</button>
+          <button className="border-2 border-moon-navy w-3/4 py-2 text-xl hover:bg-moon-warm-pink">Add to Cart</button>
         </div>
       </section>
     </div>

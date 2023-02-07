@@ -39,7 +39,7 @@ export default function AddProduct() {
     e.preventDefault();
     const uuid = uuidv4();
     console.log(product);
-    set(ref(db, `/${uuid}`), {
+    set(ref(db, `/products/${uuid}`), {
       name: product.name,
       category: product.category,
       price : product.price,

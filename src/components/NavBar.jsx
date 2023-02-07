@@ -33,13 +33,18 @@ export default function NavBar() {
         </Link>
       </header>
       <nav className="flex items-center text-lg border-x-4 border-b-4 [&>*]:p-3 [&>*]:flex-1 [&>*]: text-center [&>*]:text-moon-navy border-moon-navy">
-        <Link to="/">Items</Link>
+        <Link to="/products">Items</Link>
         <button className="flex justify-center items-center">
           Cart <BsFillCartFill className="mx-2" />
         </button>
-        {user? `Hi,${user.displayName}`: <Link to="/upload" className="flex justify-center items-center">
-          <FaEdit className="mx-2" />
-        </Link>  }
+        {user?.admin === true ? (
+          <Link to="/upload" className="flex justify-center items-center">
+            <FaEdit className="mx-2" />
+          </Link>
+        ) : (
+          ''
+        )}
+        {user && <p>Hi, {user.displayName}</p>}
         {user ? (
           <button onClick={handleSignOut} className="bg-moon-navy">
             <span className="text-moon-gray">LogOut</span>
