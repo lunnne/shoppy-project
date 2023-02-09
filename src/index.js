@@ -10,7 +10,7 @@ import Cart from './pages/Cart';
 import ErrorPage from './pages/ErrorPage';
 import AddProduct from './pages/AddProduct';
 import Home from './pages/Home';
-import Protected from './components/Protected';
+import { Protected, AdminProtected } from './components/Protected';
 
 const router = createBrowserRouter([
   {
@@ -21,8 +21,15 @@ const router = createBrowserRouter([
       { index: true, element: <Home /> },
       { path: 'products', element: <Products /> },
       { path: 'products/:productId', element: <ProductDetail /> },
-      { path: 'cart', element: <Protected><Cart/></Protected> },
-      { path: 'upload', element: <AddProduct /> },
+      {
+        path: 'cart',
+        element: (
+          <Protected>
+            <Cart />
+          </Protected>
+        ),
+      },
+      { path: 'upload', element: <AdminProtected><AddProduct /></AdminProtected> },
     ],
   },
 ]);
