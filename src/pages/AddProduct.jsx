@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { ref, set } from 'firebase/database';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { ref, set } from 'firebase/database';
 import { db } from '../utils/firebase';
 import { v4 as uuidv4 } from 'uuid';
-import { useNavigate } from 'react-router-dom';
 
 export default function AddProduct() {
   const navigate = useNavigate();
@@ -38,14 +38,14 @@ export default function AddProduct() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const uuid = uuidv4();
-    console.log(product);
+    const {name, category, price, description, options, url} = product
     set(ref(db, `/products/${uuid}`), {
-      name: product.name,
-      category: product.category,
-      price : product.price,
-      description: product.description,
-      options: product.options,
-      url: product.url,
+      name,
+      category,
+      price,
+      description,
+      options,
+      url,
       id: uuid,
     });
     setProduct({});

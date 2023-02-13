@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react';
-import { GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged, updateProfile } from 'firebase/auth';
+import { GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged} from 'firebase/auth';
 import { auth } from '../utils/firebase';
 
 const AuthContext = createContext();
@@ -28,7 +28,7 @@ export function AuthContextProvider({ children }) {
   };
 
   const logOut = () => {
-    signOut(auth).then(console.log('successfully signed out')).catch(console.error);
+    signOut(auth)
     alert('you are signing out!');
   };
 

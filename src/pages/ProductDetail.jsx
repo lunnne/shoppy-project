@@ -1,10 +1,35 @@
-import React from 'react';
-import { useLocation } from 'react-router-dom';
+import React, {useState} from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { ref, set } from 'firebase/database';
+import { db } from '../utils/firebase';
+import { UserAuth } from '../context/AuthContext';
+import { v4 as uuidv4 } from 'uuid';
+
 
 export default function ProductDetail() {
+  const { user } = UserAuth();
   const { state } = useLocation();
   const { category, price, description, name, options, url } = state;
+  const [option, setOption] = useState('')
+  const navigate = useNavigate()
   const optionArr = options.split(',');
+  
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const uuid = uuidv4();
+    set(ref(db, `/carts/${uuid}}`), {
+      name,
+      category,
+      price,
+      description,
+      name,
+      options : option,
+      url,
+      userId : user.uid
+    })
+    navigate('/')
+  }
 
   return (
     <div className=" border-moon-navy">
@@ -23,14 +48,14 @@ export default function ProductDetail() {
           <p className="text-2xl">{description}</p>
           <div className="flex space-x-2">
             <label htmlFor="options">Option : </label>
-            <select name="options" id="options">
+            <select name="options" id="options" onChange={(e)=>setOption(e.target.value)}>
               <option value="select">Choose your option</option>
               {optionArr.map((item) => (
-                <option value={item}>{item}</option>
+                <option key={item} value={item}>{item}</option>
               ))}
             </select>
           </div>
-          <button className="border-2 border-moon-navy w-3/4 py-2 text-xl hover:bg-moon-warm-pink">Add to Cart</button>
+          <button onClick={handleSubmit} className="border-2 border-moon-navy w-3/4 py-2 text-xl hover:bg-moon-warm-pink">Add to cart</button>
         </div>
       </section>
     </div>
