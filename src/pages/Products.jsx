@@ -1,23 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { db } from '../utils/firebase';
+import { useQuery } from '@tanstack/react-query';
 import { onValue, ref } from 'firebase/database';
 import ProductCard from '../components/ProductCard';
+import { getAllProducts } from '../api/products';
 
 export default function Products() {
-  const [items, setItems] = useState([]);
+  const { isLoading, error, data:items } = useQuery(['products'], getAllProducts);
 
-  useEffect(() => {
-    onValue(ref(db), (snapshot) => {
-      setItems([]);
-      const data = snapshot.val();
-      const products = data.products
-      if (data !== null) {
-        Object.values(products).map((item) => {
-          setItems((prev) => [...prev, item]);
-        });
-      }
-    });
-  }, []);
+  if (isLoading) return <p>is Loding..</p>;
+  if (error) return <p>error occured..</p>;
 
   return (
     <div className="border-4 border-moon-navy text-moon-navy">
