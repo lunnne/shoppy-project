@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { ref, set, push } from 'firebase/database';
-import { db } from '../utils/firebase';
 import { addToCart } from '../api/products';
 import { UserAuth } from '../context/AuthContext';
 
@@ -14,17 +12,14 @@ export default function ProductDetail() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addToCart(user, state, option);
-    navigate('/');
+    if (user) {
+      addToCart(user, state, option);
+      navigate('/');
+    } else {
+      alert('Sign-in is required!');
+      navigate('/');
+    }
   };
-
-  // const cartRef = ref(db, `carts/${user.uid}`);
-  // const newCartRef = push(cartRef);
-  // set(newCartRef, {
-  //   ...state,
-  //   options: option,
-  //   userId: user.uid,
-  // });
 
   return (
     <div className=" border-moon-navy">
