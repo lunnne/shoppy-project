@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { UserAuth } from '../context/AuthContext';
 import CartCard from '../components/CartCard';
 import { FaPlus, FaEquals } from 'react-icons/fa';
@@ -17,11 +17,6 @@ export default function Cart() {
 
   const handleIncrement = (id) => {
     console.log('upupup!');
-    console.log(id);
-    const targetItem = listOfCart.filter((item)=> item.id === id)
-    const qty = targetItem[0].quantity
-    console.log(targetItem);
-    setItem({...targetItem[0], quantity : qty + 1  });
   };
   const handleDelete = () => {
     console.log('deleted!');
