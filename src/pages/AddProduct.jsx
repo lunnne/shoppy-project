@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import { ref, set } from 'firebase/database';
-import { db } from '../utils/firebase';
-import { v4 as uuidv4 } from 'uuid';
+import { addProduct } from '../api/products';
+import { uploadFile } from '../api/upload';
 
 export default function AddProduct() {
   const navigate = useNavigate();
@@ -19,17 +17,8 @@ export default function AddProduct() {
   });
 
   const uploadImage = () => {
-    const data = new FormData();
-    data.append('file', image);
-    data.append('upload_preset', 'zegih5rl');
-    data.append('cloud_name', 'drhck7yy');
-    axios
-      .post('https://api.cloudinary.com/v1_1/drhck7nyy/image/upload', data, {
-        headers: { 'Content-Type': 'multipart/form-data' },
-      })
-      .then((res) => res.data)
+    uploadFile(image)
       .then((data) => {
-        console.log(data.url);
         setProduct({ ...product, url: data.url });
       })
       .catch((err) => console.log(err));
@@ -37,26 +26,14 @@ export default function AddProduct() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const uuid = uuidv4();
-    const {name, category, price, description, options, url} = product
-    set(ref(db, `/products/${uuid}`), {
-      name,
-      category,
-      price,
-      description,
-      options,
-      url,
-      id: uuid,
-    });
+    addProduct(product);
     setProduct({});
     navigate('/');
   };
 
   return (
     <>
-      <div>
-      {product.url && <img className="w-72" src={product.url} alt="image" />}
-      </div>
+      <div>{product.url && <img className="w-72" src={product.url} alt="image" />}</div>
       <div className="w-full h-12 flex items-center">
         <input type="file" onChange={(e) => setImage(e.target.files[0])}></input>
         <button className="p-2 bg-moon-gray rounded-md" onClick={uploadImage}>

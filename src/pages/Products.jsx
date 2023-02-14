@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { db } from '../utils/firebase';
+import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { onValue, ref } from 'firebase/database';
 import ProductCard from '../components/ProductCard';
 import { getAllProducts } from '../api/products';
 
 export default function Products() {
-  const { isLoading, error, data:items } = useQuery(['products'], getAllProducts);
+  const { isLoading, error, data: items } = useQuery(['products'], getAllProducts);
 
   if (isLoading) return <p>is Loding..</p>;
   if (error) return <p>error occured..</p>;
