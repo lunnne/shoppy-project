@@ -18,7 +18,7 @@ export default function CartCard({ item, onIncrement, onDelete }) {
           <AiOutlineMinus />
         </button>
         <p>{quantity}</p>
-        <button onClick={()=>onIncrement(id)}>
+        <button onClick={onIncrement}>
           <AiOutlinePlus />
         </button>
       </div>

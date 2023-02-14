@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { BsFillCartFill } from 'react-icons/bs';
 import { FaEdit } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { UserAuth } from '../context/AuthContext';
+import CartBanner from './CartBanner';
 
 export default function NavBar() {
   const { user, logOut } = UserAuth();
@@ -35,7 +35,7 @@ export default function NavBar() {
       <nav className="flex items-center text-lg border-x-4 border-b-4 [&>*]:p-3 [&>*]:flex-1 [&>*]: text-center [&>*]:text-moon-navy border-moon-navy">
         <Link to="/products">Items</Link>
         <Link to='/cart' className="flex justify-center items-center">
-          Cart <BsFillCartFill className="mx-2" />
+         <CartBanner/>
         </Link>
         {user?.admin === true ? (
           <Link to="/upload" className="flex justify-center items-center">

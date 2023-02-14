@@ -1,5 +1,5 @@
 import { db } from '../utils/firebase';
-import { set, get, ref, push } from 'firebase/database';
+import { set, get, ref, remove } from 'firebase/database';
 import { v4 as uuidv4 } from 'uuid';
 
 export async function addProduct(product) {
@@ -22,15 +22,10 @@ export async function getAllProducts() {
   });
 }
 
-export async function addToCart(user, state, option) {
-  // const filtered = itemList.filter((item) => item.id === state.id && item.options === option);
-  const cartRef = ref(db, `carts/${user.uid}`);
-  const newCartRef = push(cartRef);
-
-  set(newCartRef, {
-    ...state,
+export async function addToCart(user, product, option) {
+  return set(ref(db, `carts/${user.uid}/${product.id}`), {
+    ...product,
     options: option,
-    userId: user.uid,
     quantity: 1,
   });
 }
@@ -42,4 +37,8 @@ export async function getCart(user) {
     }
     return [];
   });
+}
+
+export async function deleteFromCart(user, product) {
+  return remove(ref(db, `carts/${user.uid}/${product.id}`));
 }
