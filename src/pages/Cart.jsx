@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { db } from '../utils/firebase';
-import { onValue, ref } from 'firebase/database';
 import { UserAuth } from '../context/AuthContext';
 import CartCard from '../components/CartCard';
 import { FaPlus, FaEquals } from 'react-icons/fa';
@@ -10,10 +8,24 @@ import { getCart } from '../api/products';
 export default function Cart() {
   const { user } = UserAuth();
   const { isLoading, error, data: listOfCart } = useQuery(['cart', user], () => getCart(user));
+  const [item, setItem] = useState({});
 
-  console.log(listOfCart);
   if (isLoading) return <p>is Loding..</p>;
   if (error) return <p>error occured..</p>;
+
+  const listOfPrice = listOfCart.map((item) => item.price);
+
+  const handleIncrement = (id) => {
+    console.log('upupup!');
+    console.log(id);
+    const targetItem = listOfCart.filter((item)=> item.id === id)
+    const qty = targetItem[0].quantity
+    console.log(targetItem);
+    setItem({...targetItem[0], quantity : qty + 1  });
+  };
+  const handleDelete = () => {
+    console.log('deleted!');
+  };
 
   return (
     <>
@@ -21,13 +33,18 @@ export default function Cart() {
         <h1 className="text-3xl py-5 border-b-2 mb-5">My cart</h1>
         <ul className="my-10 [&>*]:py-3">
           {listOfCart.map((item, index) => (
-            <CartCard key={index} item={item} />
+            <CartCard key={index} item={item} onIncrement={handleIncrement} onDelete={handleDelete} />
           ))}
         </ul>
         <div className="flex justify-evenly items-center mb-10 [&>h3]: text-center py-5">
           <h3 className="bg-moon-gray px-5 py-3 rounded-lg">
             <p className="py-2">subtotal</p>
-            <p>20,000</p>
+            <p>
+              {listOfPrice
+                .reduce((acc, cur) => acc + cur, 0)
+                .toString()
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+            </p>
           </h3>
           <h3>
             <FaPlus />

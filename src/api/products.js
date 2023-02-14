@@ -23,12 +23,15 @@ export async function getAllProducts() {
 }
 
 export async function addToCart(user, state, option) {
+  // const filtered = itemList.filter((item) => item.id === state.id && item.options === option);
   const cartRef = ref(db, `carts/${user.uid}`);
   const newCartRef = push(cartRef);
+
   set(newCartRef, {
     ...state,
     options: option,
     userId: user.uid,
+    quantity: 1,
   });
 }
 
