@@ -22,12 +22,8 @@ export async function getAllProducts() {
   });
 }
 
-export async function addToCart(user, product, option) {
-  return set(ref(db, `carts/${user.uid}/${product.id}`), {
-    ...product,
-    options: option,
-    quantity: 1,
-  });
+export async function addToCart(user, product) {
+  return set(ref(db, `carts/${user.uid}/${product.id}`), product);
 }
 
 export async function getCart(user) {
@@ -39,6 +35,6 @@ export async function getCart(user) {
   });
 }
 
-export async function deleteFromCart(user, product) {
+export async function deleteItem(user, product) {
   return remove(ref(db, `carts/${user.uid}/${product.id}`));
 }
