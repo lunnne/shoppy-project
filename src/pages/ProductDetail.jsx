@@ -13,7 +13,8 @@ export default function ProductDetail() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (user) {
-      addToCart(user, state, option);
+      const product = {...state, options : option, quantity : 1}
+      addToCart(user, product);
       navigate('/');
     } else {
       alert('Sign-in is required!');
