@@ -1,5 +1,5 @@
 import React from 'react';
-import { useQuery, QueryClient } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import { BsFillCartFill } from 'react-icons/bs';
 import { getCart } from '../api/products';
 import { UserAuth } from '../context/AuthContext';
@@ -7,8 +7,6 @@ import { UserAuth } from '../context/AuthContext';
 export default function CartBanner() {
   const { user } = UserAuth();
   const { data } = useQuery(['carts', user], () => getCart(user));
-  const client =  new QueryClient();
-  client.invalidateQueries(['carts'])
 
   return (
     <>

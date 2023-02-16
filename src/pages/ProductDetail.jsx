@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { addToCart } from '../api/products';
 import { UserAuth } from '../context/AuthContext';
@@ -9,13 +10,19 @@ export default function ProductDetail() {
   const { category, price, description, name, options, url } = state;
   const [option, setOption] = useState('');
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
+
+  const addNewToCart = useMutation(({ user, product }) => addToCart(user, product), {
+    onSuccess: () =>  queryClient.invalidateQueries(['carts']),
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (user) {
-      const product = {...state, options : option, quantity : 1}
-      addToCart(user, product);
-      navigate('/');
+      const product = { ...state, options: option, quantity: 1 };
+      addNewToCart.mutate({user,product})
+      alert('Go to the cart page?')
+      navigate('/cart')
     } else {
       alert('Sign-in is required!');
       navigate('/');
