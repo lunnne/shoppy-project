@@ -1,18 +1,25 @@
 import React from 'react';
+import {useQueryClient, useMutation} from '@tanstack/react-query'
 import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai';
 import { BsTrashFill } from 'react-icons/bs';
 import { addToCart, deleteItem } from '../api/products';
 
 export default function CartCard({ item, user }) {
   const { name, price, url, options, quantity } = item;
+  const queryClient = useQueryClient();
+
+  const addNewToCart = useMutation(({ user, product }) => addToCart(user, product), {
+    onSuccess: () =>  queryClient.invalidateQueries(['carts']),
+  });
+
 
   const onIncrement = () => {
-    addToCart(user, { ...item, quantity: quantity + 1 });
-  };
+    addNewToCart.mutate({user : user, product : {...item, quantity: quantity + 1 }})
+  }
 
   const onDecrement = () => {
     if (item.quantity > 1) {
-      addToCart(user, { ...item, quantity: quantity - 1 });
+      addNewToCart.mutate({user : user, product : { ...item, quantity: quantity - 1 }})
     } else {
       return item;
     }
