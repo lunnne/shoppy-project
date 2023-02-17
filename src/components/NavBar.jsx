@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { FaEdit } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { UserAuth } from '../context/AuthContext';
-import CartBanner from './CartBanner';
+import CartBanner from './CartBanner'; 
+
 
 export default function NavBar() {
   const { user, logOut } = UserAuth();
@@ -32,7 +33,7 @@ export default function NavBar() {
           <img className="w-36" src="/logo.png" alt="" />
         </Link>
       </header>
-      <nav className="flex items-center text-lg border-x-4 border-b-4 [&>*]:p-3 [&>*]:flex-1 [&>*]: text-center [&>*]:text-moon-navy border-moon-navy">
+      <nav className="flex items-center text-lg border-x-4 font-bold border-b-4 [&>*]:p-3 [&>*]:flex-1 [&>*]: text-center [&>*]:text-moon-navy border-moon-navy">
         <Link to="/products">Items</Link>
         <Link to='/cart' className="flex justify-center items-center">
          <CartBanner/>

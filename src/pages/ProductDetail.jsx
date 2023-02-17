@@ -3,6 +3,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { addToCart } from '../api/products';
 import { UserAuth } from '../context/AuthContext';
+import { RiStarSFill, RiStarSLine } from 'react-icons/ri';
 
 export default function ProductDetail() {
   const { user } = UserAuth();
@@ -13,16 +14,16 @@ export default function ProductDetail() {
   const queryClient = useQueryClient();
 
   const addNewToCart = useMutation(({ user, product }) => addToCart(user, product), {
-    onSuccess: () =>  queryClient.invalidateQueries(['carts']),
+    onSuccess: () => queryClient.invalidateQueries(['carts']),
   });
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (user) {
       const product = { ...state, options: option, quantity: 1 };
-      addNewToCart.mutate({user,product})
-      alert('Go to the cart page?')
-      navigate('/cart')
+      addNewToCart.mutate({ user, product });
+      alert('Go to the cart page?');
+      navigate('/cart');
     } else {
       alert('Sign-in is required!');
       navigate('/');
@@ -30,21 +31,29 @@ export default function ProductDetail() {
   };
 
   return (
-    <div className=" border-moon-navy">
-      <p className="border-x-4 border-moon-navy py-2 px-2 text-md text-moon-navy">
+    <>
+      <p className="border-moon-navy py-2 px-2 mb-10 text-md text-moon-navy">
         {' '}
         category {'>'} {category}
       </p>
-      <section className="flex border-4 border-moon-navy w-full">
-        <img className="w-2/5 border-r-4  border-moon-navy" src={url} alt={name} />
-        <div className="flex p-10 w-full flex-col justify-center items-center space-y-10">
-          <p className="font-bold text-4xl uppercase">{name}</p>
-          <p className="text-2xl font-bold">
-            {'₩ '}
-            {price}
+      <div className='flex justify-around py-5'>
+        <img className='' src='/sailorgif.gif'/>
+        <img className='' src='/sailorforhead.gif'/>
+      </div>
+
+      <section className="flex justify-around text-xl w-full">
+        <img className="w-2/5" src={url} alt={name} />
+        <div className="flex p-20 flex-col border-4  border-moon-navy space-y-5">
+          <h1 className="font-bold border-b-2 pb-5 text-4xl font-albert uppercase">{name}</h1>
+          <p className="flex pb-5">
+            <RiStarSFill />
+            <RiStarSFill />
+            <RiStarSFill />
+            <RiStarSFill />
+            <RiStarSLine />
           </p>
-          <p className="text-2xl">{description}</p>
-          <div className="flex space-x-2">
+          <p className='text-xl'>{description}</p>
+          <div className="flex space-x-3">
             <label htmlFor="options">Option : </label>
             <select name="options" id="options" onChange={(e) => setOption(e.target.value)}>
               <option value="select">Choose your option</option>
@@ -56,11 +65,15 @@ export default function ProductDetail() {
                 ))}
             </select>
           </div>
-          <button onClick={handleSubmit} className="border-2 border-moon-navy w-3/4 py-2 text-xl hover:bg-moon-warm-pink">
+          <p className="text-2xl py-5 font-bold">
+            {'₩ '}
+            {price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+          </p>
+          <button onClick={handleSubmit} className="border-2 border-moon-navy py-3 text-xl font-bold hover:bg-moon-warm-pink">
             Add to cart
           </button>
         </div>
       </section>
-    </div>
+    </>
   );
 }

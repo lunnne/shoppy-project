@@ -10,10 +10,10 @@ export default function Products() {
   if (error) return <p>error occured..</p>;
 
   return (
-    <div className="border-4 border-moon-navy text-moon-navy">
-      <ul className="grid grid-cols-4 gap-y-10 my-10 justify-center items-center">
+    <div className="border-moon-navy text-moon-navy border-4">
+      <ul className="grid grid-cols-4 justify-center items-center">
         {items.map((item) => (
-          <li className="flex flex-col items-center" key={item.id}>
+          <li id='maincontainer' className="flex flex-col items-center border-r-2 border-b-2" key={item.id}>
             <ProductCard item={item} />
           </li>
         ))}
