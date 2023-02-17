@@ -12,8 +12,8 @@ export default function Cart() {
   if (isLoading) return <p>is Loding..</p>;
   if (error) return <p>error occured..</p>;
 
-  const subTotal = listOfCart.map((item) => item.price).reduce((acc, cur) => acc + cur, 0);
-  const total = parseInt(subTotal) + 3000;
+  const subTotal = listOfCart.map((item) => item.price * item.quantity).reduce((acc, cur) => (acc + cur), 0);
+  const total = parseInt(subTotal)+ 3000;
   
 
   return (

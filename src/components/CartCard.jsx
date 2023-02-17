@@ -12,6 +12,10 @@ export default function CartCard({ item, user }) {
     onSuccess: () =>  queryClient.invalidateQueries(['carts']),
   });
 
+  const deleteItemFromCart = useMutation(({user,item})=> deleteItem(user,item), {
+    onSuccess: () =>  queryClient.invalidateQueries(['carts']),
+  })
+
 
   const onIncrement = () => {
     addNewToCart.mutate({user : user, product : {...item, quantity: quantity + 1 }})
@@ -26,7 +30,7 @@ export default function CartCard({ item, user }) {
   };
 
   const onDelete = () => {
-    deleteItem(user, item);
+    deleteItemFromCart.mutate({user, item})
   };
 
   return (
