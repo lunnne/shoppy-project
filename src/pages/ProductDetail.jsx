@@ -36,10 +36,6 @@ export default function ProductDetail() {
         {' '}
         category {'>'} {category}
       </p>
-      <div className='flex justify-around py-5'>
-        <img className='' src='/sailorgif.gif'/>
-        <img className='' src='/sailorforhead.gif'/>
-      </div>
 
       <section className="flex justify-around text-xl w-full">
         <img className="w-2/5" src={url} alt={name} />
