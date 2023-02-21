@@ -37,10 +37,10 @@ export default function ProductDetail() {
         category {'>'} {category}
       </p>
 
-      <section className="flex justify-around text-xl w-full">
-        <img className="w-2/5" src={url} alt={name} />
-        <div className="flex p-20 flex-col border-4  border-moon-navy space-y-5">
-          <h1 className="font-bold border-b-2 pb-5 text-4xl font-albert uppercase">{name}</h1>
+      <section className="grid grid-col-1 md:grid-cols-2 md:px-10 justify-center md:text-xl w-full">
+        <div className='flex justify-center'><img className="w-2/3 md:w-full" src={url} alt={name} /></div>
+        <div className="flex flex-col text-sm p-8 sm:border-2 md:border-4 md:justify-between md:p-12  border-moon-navy space-y-5">
+          <h1 className="font-albert uppercase text-xl pb-3 font-bold border-b-2 sm:pb-3 lg:text-4xl ">{name}</h1>
           <p className="flex pb-5">
             <RiStarSFill />
             <RiStarSFill />
@@ -48,8 +48,8 @@ export default function ProductDetail() {
             <RiStarSFill />
             <RiStarSLine />
           </p>
-          <p className='text-xl'>{description}</p>
-          <div className="flex space-x-3">
+          <p className='md:text-lg'>{description}</p>
+          <div className="flex space-x-3 md:text-lg">
             <label htmlFor="options">Option : </label>
             <select name="options" id="options" onChange={(e) => setOption(e.target.value)}>
               <option value="select">Choose your option</option>
@@ -61,11 +61,11 @@ export default function ProductDetail() {
                 ))}
             </select>
           </div>
-          <p className="text-2xl py-5 font-bold">
+          <p className="text-md md:text-2xl font-bold">
             {'₩ '}
             {price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
           </p>
-          <button onClick={handleSubmit} className="border-2 border-moon-navy py-3 text-xl font-bold hover:bg-moon-warm-pink">
+          <button onClick={handleSubmit} className="border-2 border-moon-navy py-3 md:text-xl font-bold hover:bg-moon-warm-pink">
             Add to cart
           </button>
         </div>

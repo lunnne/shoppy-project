@@ -34,10 +34,10 @@ export default function CartCard({ item, user }) {
   };
 
   return (
-    <li className="flex justify-around items-center">
-      <img className="w-48 border-moon-navy" src={url} alt="photo" />
+    <li className="flex justify-around items-center text-sm md:text-lg">
+      <img className="w-20 md:w-48 border-moon-navy" src={url} alt={name} />
       <div>
-        <p className="text-lg">{name}</p>
+        <p className="md:text-lg">{name}</p>
         <p>option : {options}</p>
       </div>
       <p>{price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</p>

@@ -18,8 +18,8 @@ export default function Cart() {
 
   return (
     <>
-      <section className="flex flex-col items-center my-10 [&>*]:w-full">
-        <h1 className="text-3xl py-5 border-b-2 mb-5">My cart</h1>
+      <section className="flex flex-col p-5 text-moon-dark-navy items-center md:my-10 [&>*]:w-full">
+        <h1 className="text-lg md:text-3xl md:py-5 border-b-2 border-moon-navy  md:mb-5">My cart</h1>
         <ul className="my-10 [&>*]:py-3">
           {listOfCart.map((item, index) => (
             <CartCard key={index} item={item} user={user}/>
@@ -43,7 +43,7 @@ export default function Cart() {
             <p className="py-2">total</p> <p>{total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</p>
           </h3>
         </div>
-        <button className="bg-moon-pink py-3">order</button>
+        <button className="bg-moon-pink py-3 hover:bg-moon-green" onClick={()=>alert('your order is placed!😍')}>order</button>
       </section>
     </>
   );
