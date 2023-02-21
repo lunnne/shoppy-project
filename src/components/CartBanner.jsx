@@ -11,7 +11,7 @@ export default function CartBanner() {
   return (
     <>
       <BsFillCartFill />
-      {data && <p className="rounded-full text-center text-base bg-moon-pink w-6 h-6 -translate-x-1 -translate-y-2">{data.length}</p>}
+      {data && <p className="rounded-full w-5 h-5 md:text-lg text-center bg-moon-pink lg:w-6 lg:h-6 -translate-x-1.5 -translate-y-1.5">{data.length}</p>}
     </>
   );
 }
