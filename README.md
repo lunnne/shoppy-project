@@ -11,6 +11,7 @@ shopping cart functionality, and the ability to log in with Google.
 
 
 ## Demo
+#### live Demo👉 [Seller Moon App](https://https://sellermoon.netlify.app, "app link")
 
 ## Installation and Execution
 <pre><code>$ git clone https://github.com/lunnne/shoppy-project.git
