@@ -3,7 +3,7 @@
 <img src="https://img.shields.io/badge/reacthookform-EC5990?style=flat&logo=reacthookform&logoColor=white"/>
 <img src="https://img.shields.io/badge/Cloudinary-003DAD?style=flat"/> <img src="https://img.shields.io/badge/Yarn-2C8EBB?style=flat&logo=Yarn&logoColor=white"/>
 <img src="https://img.shields.io/badge/Github-181717?style=flat&logo=Github&logoColor=white"/>
-<img src="https://img.shields.io/badge/Netlify-00C7B7?style=flat&logo=Netlify&logoColor=white"/>    
+<img src="https://img.shields.io/badge/Netlify-00C7B7?style=flat&logo=Netlify&logoColor=white"/>        
 
 Seller Moon App is a shopping mall website inspired by cherished memories of Sailor Moon from childhood.    
 The website is themed around Sailor Moon and includes features such as product registration, product details page,    
@@ -12,6 +12,9 @@ shopping cart functionality, and the ability to log in with Google.
 
 ## Demo
 #### live Demo👉 [Seller Moon App](https://sellermoon.netlify.app/)
+
+
+<img width="30%" height="30%" src="https://github.com/lunnne/shoppy-project/assets/94328456/f71425c6-a6e0-4c6c-929c-aa1a0ff27d87"/>
 
 ## Installation and Execution
 <pre><code>$ git clone https://github.com/lunnne/shoppy-project.git
