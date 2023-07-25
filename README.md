@@ -13,6 +13,10 @@ shopping cart functionality, and the ability to log in with Google.
 ## Demo
 
 ## Installation and Execution
+<pre><code>$ git clone https://github.com/lunnne/shoppy-project.git
+$ yarn install
+$ yarn start
+</code></pre>
 
 ## Main Features
 Seller Moon App offers the following key features:
