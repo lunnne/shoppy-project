@@ -4,23 +4,23 @@
 <img src="https://img.shields.io/badge/Cloudinary-003DAD?style=flat"/> <img src="https://img.shields.io/badge/Yarn-2C8EBB?style=flat&logo=Yarn&logoColor=white"/>
 <img src="https://img.shields.io/badge/Github-181717?style=flat&logo=Github&logoColor=white"/>
 <img src="https://img.shields.io/badge/Netlify-00C7B7?style=flat&logo=Netlify&logoColor=white"/>        
-
+<br/>
 Seller Moon App is a shopping mall website inspired by cherished memories of Sailor Moon from childhood.    
 The website is themed around Sailor Moon and includes features such as product registration, product details page,    
 shopping cart functionality, and the ability to log in with Google.
-
+<br/>
 
 ## Demo
 #### live Demo👉 [Seller Moon App](https://sellermoon.netlify.app/)
-
-
 <img width="30%" height="30%" src="https://github.com/lunnne/shoppy-project/assets/94328456/f71425c6-a6e0-4c6c-929c-aa1a0ff27d87"/>
+<br/>
 
 ## Installation and Execution
 <pre><code>$ git clone https://github.com/lunnne/shoppy-project.git
 $ yarn install
 $ yarn start
 </code></pre>
+<br/>
 
 ## Main Features
 Seller Moon App offers the following key features:
@@ -32,6 +32,7 @@ Seller Moon App offers the following key features:
 + __Firebase Database Integration:__ The website is integrated with Firebase's Realtime Database to handle product and user data.
 
 + __Cloudinary Image Storage:__ The app is connected to Cloudinary's image storage service, enabling the registration of product images and storing them in the cloud.
+<br/>
 
 ## Future Enhancements
 The following features are planned for future development:
@@ -41,6 +42,9 @@ The following features are planned for future development:
 + __Payment Method Implementation:__ Implement payment methods for seamless transactions.
 
 + __Admin Validation for Product__ Registration: Implement validation checks for admin accounts when registering new products.
+<br/>
 
 ## Deploy
-  
+<p>
+  <img width="100px"src="https://img.shields.io/badge/Netlify-00C7B7?style=flat-square&logo=Netlify&logoColor=white"/>
+</p>
