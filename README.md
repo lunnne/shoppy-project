@@ -3,8 +3,12 @@
 <img src="https://img.shields.io/badge/reacthookform-EC5990?style=flat&logo=reacthookform&logoColor=white"/>
 <img src="https://img.shields.io/badge/Cloudinary-003DAD?style=flat"/> <img src="https://img.shields.io/badge/Yarn-2C8EBB?style=flat&logo=Yarn&logoColor=white"/>
 <img src="https://img.shields.io/badge/Github-181717?style=flat&logo=Github&logoColor=white"/>
-<img src="https://img.shields.io/badge/Netlify-00C7B7?style=flat&logo=Netlify&logoColor=white"/> 
->Seller Moon App is a shopping mall website inspired by cherished memories of Sailor Moon from childhood. The website is themed around Sailor Moon and includes features such as product registration, product details page, shopping cart functionality, and the ability to log in with Google.
+<img src="https://img.shields.io/badge/Netlify-00C7B7?style=flat&logo=Netlify&logoColor=white"/>    
+
+Seller Moon App is a shopping mall website inspired by cherished memories of Sailor Moon from childhood.    
+The website is themed around Sailor Moon and includes features such as product registration, product details page,    
+shopping cart functionality, and the ability to log in with Google.
+
 
 ## Demo
 
@@ -13,22 +17,22 @@
 ## Main Features
 Seller Moon App offers the following key features:
 
-+ Admin and User Accounts: The website differentiates between regular user accounts and admin accounts. Admin accounts have the privilege to register new products.
++ __Admin and User Accounts:__ The website differentiates between regular user accounts and admin accounts. Admin accounts have the privilege to register new products.
 
-+ Google OAuth Login: Users can log in using their Google accounts through Firebase's Google OAuth implementation.
++ __Google OAuth Login:__ Users can log in using their Google accounts through Firebase's Google OAuth implementation.
 
-+ Firebase Database Integration: The website is integrated with Firebase's Realtime Database to handle product and user data.
++ __Firebase Database Integration:__ The website is integrated with Firebase's Realtime Database to handle product and user data.
 
-+ Cloudinary Image Storage: The app is connected to Cloudinary's image storage service, enabling the registration of product images and storing them in the cloud.
++ __Cloudinary Image Storage:__ The app is connected to Cloudinary's image storage service, enabling the registration of product images and storing them in the cloud.
 
 ## Future Enhancements
 The following features are planned for future development:
 
-+ Improved Cart Functionality: Enhance the shopping cart functionality to accommodate product options.
++ __Improved Cart Functionality:__ Enhance the shopping cart functionality to accommodate product options.
 
-+ Payment Method Implementation: Implement payment methods for seamless transactions.
++ __Payment Method Implementation:__ Implement payment methods for seamless transactions.
 
-+ Admin Validation for Product Registration: Implement validation checks for admin accounts when registering new products.
++ __Admin Validation for Product__ Registration: Implement validation checks for admin accounts when registering new products.
 
 ## Deploy
   
